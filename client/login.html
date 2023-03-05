@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <link rel="stylesheet" href="login.css">
+        <div class="Page">
+            <div 
+                style="
+                    display: flex;
+                    align-items: center;
+                "
+            >
+                <div class="signup-card">
+                    <div>
+                        <h1 style="font-size: 50px; margin-bottom: 50px;">
+                            Login
+                        </h1>
+                    </div>
+                    <form id="loginForm">
+                        <div>
+                            <label for="username">Username</label>
+                        </div>
+                        <div>
+                            <input 
+                                id="username" 
+                                onChange="handleUsername();"
+                                type="text" 
+                                style="height: 40; width: 350; margin-bottom: 20px;"
+                                minlength="6"
+                                pattern="[A-Za-z0-9_]{6,}"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="pass">Password</label>
+                        </div>
+                        <div>
+                            <input 
+                                id="pass" 
+                                onChange="handlepass();"
+                                type="password" 
+                                style="height: 40; width: 350; margin-bottom: 20px;"
+                                minLength="8"
+                                maxLength="20"
+                                pattern="^[A-Za-z0-9_]{8,}$"
+                                required
+                            />
+                        </div>
+                        
+                    </form>
+                    <button type="submit" form="loginForm" value="Submit" class = "button">Submit</button>
+                    <br /> <br />
+                    <a href="./signup.html">
+                        Don't have an Account?
+                    </a>
+                    
+                </div>
+            </div>          
+        </div>
+    </body>
+</html>
+

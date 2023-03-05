@@ -1,0 +1,43 @@
+.Page {
+    background-color: #e6e9ee;
+    min-height: 100vh;
+  }
+
+.signup-card {
+    display: block;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin: auto;
+    padding: 5px;
+    width: 60%;
+    height: fit-content !important;
+  }
+
+.button {
+  color: white !important;
+  background-color: #299417 !important;
+  border-color: #299417 !important;
+  font-weight: 500 !important;
+  font-size: 20px !important;
+}
+
+.button:hover {
+  background-color: #195310 !important;
+  border-color: #195310 !important;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+
+label {
+  font-weight: 600;
+}
+
+.input {
+  box-sizing:border-box;
+  padding-left: 1.5rem;
+}
+  

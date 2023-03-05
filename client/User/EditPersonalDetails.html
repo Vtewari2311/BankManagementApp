@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <link rel="stylesheet" href="../login.css">
+        <div class="Page">
+            <div 
+                style="
+                    display: flex;
+                    align-items: center;
+                "
+            >
+                <div class="signup-card">
+                    <div>
+                        <h1 style="font-size: 50px; margin-bottom: 50px;">
+                            Personal Details
+                        </h1>
+                    </div>
+                    <a href="./PasswordChange.html">
+                        Click here to change your password.
+                    </a>
+                    <form id="signupForm">
+                        <div>
+                            <label for="fname">First Name</label>
+                        </div>
+                        <div>
+                            <input 
+                                id="fname" 
+                                onChange="handlefname();"
+                                type="text" 
+                                style="height: 40; width: 350; margin-bottom: 20px;"
+                                minlength="1"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="lname" style="padding-right: 40;">Last Name
+                        
+                            <input 
+                                id="lname" 
+                                onChange="handlelname();"
+                                type="text" 
+                                style="height: 40; width: 350; margin-bottom: 20px;"
+                                minlength="1"
+                                required
+                            />
+                        
+                            </label>
+                        </div>
+                        <div>
+                            <label for="mi">Middle Initial</label>
+                        </div>
+                        <div>
+                            <input 
+                                id="mi" 
+                                onChange="handlemi();"
+                                type="text" 
+                                style="height: 40; width: 350; margin-bottom: 20px;"
+                                maxlength="1"
+                            />
+                        </div>
+                        <div>
+                            <label for="username">Username</label>
+                        </div>
+                        <div>
+                            <input 
+                                id="username" 
+                                onChange="handleUsername();"
+                                type="text" 
+                                style="height: 40; width: 350; margin-bottom: 20px;"
+                                minlength="6"
+                                pattern="[A-Za-z0-9_]{6,}"
+                                required
+                            />
+                        </div>
+                        
+                    </form>
+                    <button type="submit" form="signupForm" value="Submit" class = "button">Submit</button>
+                    
+                </div>
+            </div>          
+        </div>
+    </body>
+</html>
+
