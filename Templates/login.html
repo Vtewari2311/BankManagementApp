@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <meta charset="UTF-8">
+    <title>Bank Management App Login</title>
+</head>
+<body>
+{% load static %}
+<img class="img-fluid rounded mx-auto d-block imgMaxHeight" src="{% static 'custom/logo-no-background.svg' %}">
+<form action="/" method="post">
+    {% csrf_token %}
+    <div class="container">
+        {% if message %}
+            <div class="alert alert-danger text-center margTop" role="alert">
+                <hr>
+                <h4 class="alert-heading">{{ message }}</h4>
+                <hr>
+            </div>
+        {% endif %}
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="submit" value="Login"></button>
+    </div>
+</form>
+</body>
+</html>

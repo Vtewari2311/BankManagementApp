@@ -10,7 +10,7 @@
         @font-face {
             font-family: 'Archivo';
             src: local('Archivo'),
-            url('../../static/fonts/Archivo_Narrow_Medium.ttf') format("truetype");
+            url('../static/fonts/Archivo_Narrow_Medium.ttf') format("truetype");
         }
 
         .margTop {
@@ -105,50 +105,55 @@
 </div>
 <div class='d-flex margTop'>
     <div class="homeContainer">
-        <h1 class ='margTop'>{{ page_state_title }}</h1>
-        <form class='mx-auto' method="POST" action="/search/user/results/">
-            {% if bad_message %}
-                <div class="alert alert-danger text-center margTop mx-auto w-75" role="alert">
-                    <hr>
-                    <h4 class="alert-heading">{{ bad_message }}</h4>
-                    <hr>
-                </div>
-            {% endif %}
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                       placeholder="Enter an Email">
+        {% if bad_message %}
+            <div class="alert alert-danger text-center margTop mx-auto w-75" role="alert">
+                <hr>
+                <h4 class="alert-heading">{{ bad_message }}</h4>
+                <hr>
             </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username"
-                       placeholder="Enter a Username">
+        {% endif %}
+        {% if good_message %}
+            <div class="alert alert-success text-center margTop mx-auto w-75" role="alert">
+                <hr>
+                <h4 class="alert-heading">{{ good_message }}</h4>
+                <hr>
             </div>
-            <div class="form-group">
-                <label for="first_name">First Name of User</label>
-                <input type="text" class="form-control" id="first_name" name="first_name"
-                       placeholder="Enter the User's First Name">
+        {% endif %}
+        {% if user %}
+            <div class="mx-auto text-center">
+                {% with user.getFirstName|add:" "|add:user.getLastName as fullname %}
+                    <h1>Your Profile</h1>
+                {% endwith %}
+                <table class="table text-center margTop">
+                    <thead>
+                    <tr class="table-primary">
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Type of User Account</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ user.getFirstName }}</td>
+                        <td>{{ user.getLastName }}</td>
+                        <td>{{ user.getUserType }}</td>
+                        <td>{{ user.getEmail }}</td>
+                        <td>{{ user.getPhoneNumber }}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="form-group">
-                <label for="last_name">Last Name of User</label>
-                <input type="text" class="form-control" id="last_name" name="last_name"
-                       placeholder="Enter the User's Last Name">
-            </div>
-            <div class="form-group">
-                <label for="user_type">Type of User Account</label>
-                <select class="form-select" id="user_type" name="user_type" required>
-                    <option>Account Type</option>
-                    <option>Checking</option>
-                    <option>Savings</option>
-                </select>
-            </div>
-            <input type="submit" class="btn btn-primary margTop float-right w-100" value="Search For Account">
-        </form>
-        <a class="min-vw-100" href="/search/">
-            <input class="btn btn-danger redButton" type="submit" value="Return To Search Page">
+        {% endif %}
+        <a class="min-vw-100" href="/EditUserProfile/">
+            <input class="btn btn-primary" type="submit" value="Edit my profile">
+        </a>
+        <a class="min-vw-100" href="/home/">
+            <input class="btn btn-danger redButton" type="submit" value="Return To Home Page">
         </a>
     </div>
 </div>
+
 </body>
 </html>

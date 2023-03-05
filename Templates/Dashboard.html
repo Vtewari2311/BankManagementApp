@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>TA Scheduling App Home Page</title>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="fullwidthBar">
+      <a href="/home/">
+        {% load static %}
+        <img class="img-fluid rounded mx-auto d-block imgMaxHeight center"
+             src="{% static 'custom/ta-scheduling-app-high-resolution-logo-white-on-transparent-background.svg' %}">
+      </a>
+    </div>
+    <div class='d-flex margTop'>
+      <div class="homeContainer">
+        {% csrf_token %}
+        {% include State %}
+      </div>
+    </div>
+  </body>
+</html>

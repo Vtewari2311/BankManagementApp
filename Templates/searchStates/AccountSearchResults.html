@@ -105,49 +105,42 @@
 </div>
 <div class='d-flex margTop'>
     <div class="homeContainer">
-        <h1 class ='margTop'>{{ page_state_title }}</h1>
-        <form class='mx-auto' method="POST" action="/search/user/results/">
-            {% if bad_message %}
-                <div class="alert alert-danger text-center margTop mx-auto w-75" role="alert">
-                    <hr>
-                    <h4 class="alert-heading">{{ bad_message }}</h4>
-                    <hr>
-                </div>
-            {% endif %}
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                       placeholder="Enter an Email">
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username"
-                       placeholder="Enter a Username">
-            </div>
-            <div class="form-group">
-                <label for="first_name">First Name of User</label>
-                <input type="text" class="form-control" id="first_name" name="first_name"
-                       placeholder="Enter the User's First Name">
-            </div>
-            <div class="form-group">
-                <label for="last_name">Last Name of User</label>
-                <input type="text" class="form-control" id="last_name" name="last_name"
-                       placeholder="Enter the User's Last Name">
-            </div>
-            <div class="form-group">
-                <label for="user_type">Type of User Account</label>
-                <select class="form-select" id="user_type" name="user_type" required>
-                    <option>Account Type</option>
-                    <option>Checking</option>
-                    <option>Savings</option>
-                </select>
-            </div>
-            <input type="submit" class="btn btn-primary margTop float-right w-100" value="Search For Account">
-        </form>
-        <a class="min-vw-100" href="/search/">
+        {% if query_users %}
+            <div class="mx-auto text-center">
+            <h1>{{ page_state_title }}</h1>
+            <table class="table text-center margTop">
+                <thead>
+                <tr class="table-primary">
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Type of User</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Account Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in query_users %}
+                    <tr>
+                        <th scope="row"><a href="{% url 'profile' %}?user={{ user.getID }}">{{ user.getFirstName }}</a></th>
+                        <td><a href="{% url 'profile' %}?user={{ user.getID }}">{{ user.getLastName }}</a></td>
+                        <td><a href="{% url 'profile' %}?user={{ user.getID }}">{{ user.getUserType }}</a></td>
+                        <td><a href="{% url 'profile' %}?user={{ user.getID }}">{{ user.getEmail }}</a></td>
+                        <td>
+                            {% for course in user.getAccount %}
+                                {{ acc.type }}
+                                <br>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </a>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <a class="min-vw-100" href="/AccountSearch/">
             <input class="btn btn-danger redButton" type="submit" value="Return To Search Page">
         </a>
+        </div>
     </div>
 </div>
 </body>
