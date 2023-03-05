@@ -16,11 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app.PersonalCourseViews import MyCourses
-from app.search_views import SearchHome, SearchUser, SearchCourse, SearchUserResults, SearchCourseResults
-from app.section_views import SingleSection
-from app.user_profile_views import Profile, PersonalProfile, EditMyProfile
-from app.coursesummaryviews import CourseSummary
 from app.views import Login, Home, LogOut, AccountManagement, CreateAccount, AccountFactoryCreate, DeleteAccount, \
     AccountFactoryDelete, EditAccount, AccountEditActive, CourseManagement, CreateCourse, CourseFactoryCreate, \
     DeleteCourse, CourseFactoryDelete, EditCourse, CourseEditActive, CourseAddSection, CourseDeleteSection, \
@@ -39,11 +34,5 @@ urlpatterns = [
     path('EditAccount/', EditAccount.as_view()),
     path('AccountEditActive/', AccountEditActive.as_view()),
     path('SectionSummary/', SectionSummary.as_view()),
-    path('search/', SearchHome.as_view()),
-    path('search/user/', SearchUser.as_view()),
-    path('search/user/results/', SearchUserResults.as_view()),
-    path('profile/', Profile.as_view(), name='profile'),
-    path('MyProfile/', PersonalProfile.as_view()),
-    path('EditProfile/', EditMyProfile.as_view()),
 ]
 
