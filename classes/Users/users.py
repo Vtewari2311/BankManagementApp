@@ -28,6 +28,14 @@ class AbstractUser(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def getCheckings(self):
+        pass
+
+    @abc.abstractmethod
+    def getSavings(self):
+        pass
+
+    @abc.abstractmethod
     def getAccountNumber(self):
         pass
 
@@ -49,6 +57,14 @@ class AbstractUser(abc.ABC):
 
     @abc.abstractmethod
     def setLastName(self, param):
+        pass
+
+    @abc.abstractmethod
+    def setCheckings(self, param):
+        pass
+
+    @abc.abstractmethod
+    def setSavings(self, param):
         pass
 
     @abc.abstractmethod
@@ -79,8 +95,11 @@ class Owner(AbstractUser):
     def getLastName(self) -> str:
         return self.model.accountID.lastName
 
-    def getUserType(self) -> str:
-        return self.model.accountID.userType
+    def getCheckings(self) -> str:
+        return self.model.accountID.checkings
+
+    def getSavings(self) -> str:
+        return self.model.accountID.savings
 
     def getAccountNumber(self) -> str:
         return self.model.accountID.accountNumber
@@ -131,13 +150,38 @@ class Owner(AbstractUser):
         userObj.lastName = name
         userObj.save()
 
+    def setCheckings(self, num):
+        if self.model.accountID.checkings == num:
+            return
+        if len(num) > 10:
+            raise ValueError("User account checkings is too big")
+        if not(num.isnumeric()):
+            raise ValueError("User account checkings is not a number")
+        accID = self.model.accountID.accountID
+        userObj = Owner.objects.get(accountID=accID)
+        userObj.checkings = num
+        userObj.save()
+
+    def setSavings(self, num):
+        if self.model.accountID.checkings == num:
+            return
+        if len(num) > 10:
+            raise ValueError("User account savings is too big")
+        if not(num.isnumeric()):
+            raise ValueError("User account savings is not a number")
+        accID = self.model.accountID.accountID
+        userObj = Owner.objects.get(accountID=accID)
+        userObj.savings = num
+        userObj.save()
+
     def setAccountNumber(self, num):
         if self.model.accountID.accountNumber == num:
             return
-        if len(num) != 12 or num.isnumeric():
+        if len(num) != 12 or not(num.isnumeric()):
             raise ValueError("User account number is not 12 digits")
         accID = self.model.accountID.accountID
         userObj = Owner.objects.get(accountID=accID)
         userObj.accountNumber = num
         userObj.save()
+
 

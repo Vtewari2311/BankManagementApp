@@ -13,6 +13,8 @@ class User(models.Model):
     password = models.CharField(max_length=30, blank=False, null=False)
     firstName = models.CharField(max_length=30, blank=False, null=False, db_index=True)
     lastName = models.CharField(max_length=30, blank=False, null=False)
+    checkings = models.CharField(max_length=10, default="0", null=False)
+    savings = models.CharField(max_length=10, default="0", null=False)
     #phone_number = models.CharField(max_length=10, unique=True, blank=True, null=True)
     #home_address = models.CharField(max_length=70, blank=True, null=True)
     accountNumber = models.CharField(max_length=12, unique=True, blank=False)
